@@ -10,7 +10,7 @@ For this task, we have used several sources including prothom-alo news corpus, t
 Due to the license limitation, we can not publicly release this dataset. Please contact privately in order to obtain this data for research purpose. We are open to collaborate.
 
 
-## Data preparation for word2vec model training
+##Data preparation for word2vec model training
 Since data sources is different, therefore it is necessary to clean the data first (e.g., removing html tags). We are not including that step here.
 Once data is cleaned, the follwing tool can be used to prepare the data for training word embedding model. It basically split the text into sentences and writes to a text file and also multiple files. The sentense delimeter include "?" and "\u0964" characters.
 It also annotate all numbers into DIGIT tag.
@@ -20,7 +20,7 @@ Please check the Readme in **DataProcessor** module in order to run it. Here is 
 java -classpath dist/DataProcessor.jar dataprocessor.DataProcessor -i bn_data_files_list.txt -d bn_data_preprocessed/ -o bn_data_preprocessed.txt
 ```
 
-# Model training parameter
+##Model training parameter
 For training the model there are many tools available. We have explored [word2vec](https://code.google.com/archive/p/word2vec/) and [gensim](https://radimrehurek.com/gensim/models/word2vec.html) implementation.
 
 [word2vec](https://code.google.com/archive/p/word2vec/) implementation:
@@ -33,17 +33,28 @@ For training the model there are many tools available. We have explored [word2ve
 gensim.models.Word2Vec(size=300, window=5, min_count=3, workers=40,seed=1,cbow=0,sample=1e-4,hs=1,negative=5,iter=15)
 ```
 
-#How to use:
+##How to use:
 **Find the top ten most similar words of the word 'প্রধানমন্ত্রী'**
 ```python
 import gensim
-model = gensim.models.Word2Vec.load_word2vec_format('palo_book_abp_news_bnwiki_W2V.model', binary=False)
+model = gensim.models.Word2Vec.load('bn_w2v_model.bin')
 words=model.most_similar(positive=['প্রধানমন্ত্রী'], negative=[], topn=10)
 
 for w in words:
   print w[0]
-  ##Finding the word vector
-  vector = model['প্রধানমন্ত্রী']
+# The most similar top ten words that we are getting are reasonable, as shown below.
+মনমোহন
+প্রধানমন্ত্রীর
+হাসিনা
+রাষ্ট্রপতি
+হাসিনার
+প্রধানমন্ত্রীকে
+শান্তিপথে
+বিদেশমন্ত্রী
+মনমোহনের
+এসডিএফের
+#Finding the word vector
+vector = model['প্রধানমন্ত্রী']
 ```
 The trained model using [word2vec](https://code.google.com/archive/p/word2vec/) can be found from the following link:
 
