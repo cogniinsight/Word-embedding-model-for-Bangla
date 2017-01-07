@@ -33,7 +33,7 @@ For training the model there are many tools available. We have explored [word2ve
 gensim.models.Word2Vec(size=300, window=5, min_count=3, workers=40,seed=1,cbow=0,sample=1e-4,hs=1,negative=5,iter=15)
 ```
 
-How to use:
+#How to use:
 **Find the top ten most similar words of the word 'প্রধানমন্ত্রী'**
 ```python
 import gensim
