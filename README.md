@@ -1,33 +1,54 @@
 
 
-**Word embedding model for Bangla**
+**Word embedding (word2vec) model for Bangla**
 -------------------------------
+For many NLP tasks, we need linguistic resources (e.g. linguistically motivated features, dictionary) in order to design fundamental tools such as *parts-of-speech tagger*, *named entity recognizer*. Such resources are scarce and at the same time digital content, such as text, are growing very fast, can also partially be available. The idea is utilizes the source and design model can be useful in many Bangla language specific NLP tasks.
 
- The model can be found from the following link:
- Link:
- 
-The corpora for training the model has been collected from different sources, including prothom-alo news corpus, transcriptions of CRBLP speech corpus, Bangla textbook corpus, and wiki dump (wikidump accessed on 20th of July, 2016). It contains 84.25 millions of words, 3.2millions word types, and 7.5 millions of sentences. Please check the paper below for more details. 
- 
- Can be used for many Bangla language specific NLP tasks. 
- 
-The model is trained using gemsim implementation of word2vec. Model training parameters include the following:
+In order to design the [word embedding model](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiknYmBt6_RAhUCuxQKHa84ArsQFggiMAE&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FWord_embedding&usg=AFQjCNEfLh8jgy4D59NSHg0p0saR50y5LA&sig2=haVtPU6KTAvFh-kyNrFsQA), one needs to have a large collection of text. For example, [google-embedding model (GoogleNews-vectors-negative300.bin.gz)](https://code.google.com/archive/p/word2vec/) contains 100 billion words. For Bangla, publicly available text data is not very large. One way is to collect is scrap the text data from the wab.
+For this task, we have used several sources including prothom-alo news corpus, transcriptions of CRBLP speech corpus, Bangla textbook corpus, and wiki dump (wikidump accessed on 20th of July, 2016). It contains 84.25 millions of words, 3.2 millions word types, and 7.5 millions of sentences. Please check the paper below for more details.
 
-    gensim.models.Word2Vec(size=400, window=5, min_count=5, workers=40,seed=1,sample=1e-5,hs=1,negative=5,iter=30)
+Due to the license limitation, we can not publicly release this dataset. Please contact privately in order to obtain this data for research purpose. We are open to collaborate.
 
-For tokenization the script `w2vtokenize.py` is used.
 
- How to use: 
+## Data preparation for word2vec model training
+Since data sources is different, therefore it is necessary to clean the data first (e.g., removing html tags). We are not including that step here.
+Once data is cleaned, the follwing tool can be used to prepare the data for training word embedding model. It basically split the text into sentences and writes to a text file and also multiple files. The sentense delimeter include "?" and "\u0964" characters.
+It also annotate all numbers into DIGIT tag.
 
-    # Find the top ten most similar words of the word 'প্রধানমন্ত্রী'
-    import gensim
-    model = gensim.models.Word2Vec.load('palo_book_abp_news_bnwiki_W2V.model', binary=False)
-    words=model.most_similar(positive=['প্রধানমন্ত্রী'], negative=[], topn=10)
-    
-    for w in words:
-    	print w[0]
-    ##Finding the word vector
-    vector = model['প্রধানমন্ত্রী']
+Please check the Readme in **DataProcessor** module in order to run it. Here is an example,
+```java
+java -classpath dist/DataProcessor.jar dataprocessor.DataProcessor -i bn_data_files_list.txt -d bn_data_preprocessed/ -o bn_data_preprocessed.txt
+```
 
- Please cite the following paper if you are using this model:
+# Model training parameter
+For training the model there are many tools available. We have explored [word2vec](https://code.google.com/archive/p/word2vec/) and [gensim](https://radimrehurek.com/gensim/models/word2vec.html) implementation.
+
+[word2vec](https://code.google.com/archive/p/word2vec/) implementation:
+```bash
+./word2vec -train bn_data_preprocessed.txt -output bn_w2v_model.txt -cbow 0 -size 300 -window 5 -negative 5 -hs 1 -sample 1e-4 -threads 40 -binary 0 -iter 15 -min-count 3 -save-vocab bn_w2v_model_vocab.txt
+```
+
+[gensim](https://radimrehurek.com/gensim/models/word2vec.html) implementation of word2vec. Model training parameters include the following:
+```python
+gensim.models.Word2Vec(size=300, window=5, min_count=3, workers=40,seed=1,cbow=0,sample=1e-4,hs=1,negative=5,iter=15)
+```
+
+How to use:
+**Find the top ten most similar words of the word 'প্রধানমন্ত্রী'**
+```python
+import gensim
+model = gensim.models.Word2Vec.load_word2vec_format('palo_book_abp_news_bnwiki_W2V.model', binary=False)
+words=model.most_similar(positive=['প্রধানমন্ত্রী'], negative=[], topn=10)
+
+for w in words:
+  print w[0]
+  ##Finding the word vector
+  vector = model['প্রধানমন্ত্রী']
+```
+The trained model using [word2vec](https://code.google.com/archive/p/word2vec/) can be found from the following link:
+
+The vocab size of the model is **436126** with 300-dimensional vectors.
+
+Please cite the following paper if you are using this model:
 
 *Firoj Alam, Shammur Absar Chowdhury and Sheak Rashed Haider Noori, Bidirectional LSTMs - CRFs Networks for Bangla POS Tagging, ICCIT 2016.*
