@@ -56,7 +56,7 @@ for w in words:
 #Finding the word vector
 vector = model['প্রধানমন্ত্রী']
 ```
-The trained model using [word2vec](https://code.google.com/archive/p/word2vec/) can be found from the following link:
+The trained model using [word2vec](https://code.google.com/archive/p/word2vec/) can be found [here](https://drive.google.com/file/d/0Bxa1keXJ_v7CMmNwdWlEUVJOdlU/view?usp=sharing).
 
 The vocab size of the model is **436126** with 300-dimensional vectors.
 
