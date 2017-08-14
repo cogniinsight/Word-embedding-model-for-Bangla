@@ -63,3 +63,14 @@ The vocab size of the model is **436126** with 300-dimensional vectors.
 Please cite the following paper if you are using this model:
 
 *Firoj Alam, Shammur Absar Chowdhury and Sheak Rashed Haider Noori, Bidirectional LSTMs - CRFs Networks for Bangla POS Tagging, ICCIT 2016.*
+
+```bib
+@inproceedings{alam2016bidirectional,
+  title={Bidirectional LSTMs—CRFs networks for bangla POS tagging},
+  author={Alam, Firoj and Chowdhury, Shammur Absar and Noori, Sheak Rashed Haider},
+  booktitle={Computer and Information Technology (ICCIT), 2016 19th International Conference on},
+  pages={377--382},
+  year={2016},
+  organization={IEEE}
+}
+```
