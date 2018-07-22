@@ -7,7 +7,7 @@ For many NLP tasks, we need linguistic resources (e.g. linguistically motivated 
 In order to design the [word embedding model](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiknYmBt6_RAhUCuxQKHa84ArsQFggiMAE&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FWord_embedding&usg=AFQjCNEfLh8jgy4D59NSHg0p0saR50y5LA&sig2=haVtPU6KTAvFh-kyNrFsQA), one needs to have a large collection of text. For example, [google-embedding model (GoogleNews-vectors-negative300.bin.gz)](https://code.google.com/archive/p/word2vec/) contains 100 billion words. For Bangla, publicly available text data is not very large. One way is to collect is scrap the text data from the wab.
 For this task, we have used several sources including prothom-alo news corpus, transcriptions of CRBLP speech corpus, Bangla textbook corpus, and wiki dump (wikidump accessed on 20th of July, 2016). It contains 84.25 millions of words, 3.2 millions word types, and 7.5 millions of sentences. Please check the paper below for more details.
 
-Due to the license limitation, we can not publicly release this dataset. 
+Due to the license limitation, we can not publicly release this dataset.
 
 ## Prerequisites
 * Python 2.7
@@ -59,7 +59,7 @@ for w in words:
 #Finding the word vector
 vector = model['প্রধানমন্ত্রী']
 ```
-The trained model using [word2vec](https://code.google.com/archive/p/word2vec/) can be found [here](https://drive.google.com/file/d/0Bxa1keXJ_v7CMmNwdWlEUVJOdlU/view?usp=sharing).
+The trained model using [word2vec](https://code.google.com/archive/p/word2vec/) can be found [binary here](https://drive.google.com/file/d/0Bxa1keXJ_v7CMmNwdWlEUVJOdlU/view?usp=sharing) and [text version](https://drive.google.com/open?id=0Bxa1keXJ_v7CMmNwdWlEUVJOdlU).
 
 The vocab size of the model is **436126** with 300-dimensional vectors.
 
@@ -71,7 +71,7 @@ Please cite the following paper if you are using this model:
 @inproceedings{alam2016bidirectional,
   title={Bidirectional LSTMs—CRFs networks for bangla POS tagging},
   author={Alam, Firoj and Chowdhury, Shammur Absar and Noori, Sheak Rashed Haider},
-  booktitle={Computer and Information Technology (ICCIT), 2016 19th International Conference on},
+  booktitle={19th International Conference on Computer and Information Technology (ICCIT), 2016},
   pages={377--382},
   year={2016},
   organization={IEEE}
