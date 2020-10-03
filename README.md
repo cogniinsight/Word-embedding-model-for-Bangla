@@ -10,7 +10,8 @@ For this task, we have used several sources including prothom-alo news corpus, t
 Due to the license limitation, we can not publicly release this dataset.
 
 ## Prerequisites
-* Python 2.7
+<!-- * Python 2.7 -->
+* Python 3.x
 * Gensim (Tested on 1.0.1)
 
 ## Data preparation for word2vec model training
@@ -39,12 +40,13 @@ gensim.models.Word2Vec(size=300, window=5, min_count=3, workers=40,seed=1,cbow=0
 ## How to use:
 **Find the top ten most similar words of the word 'প্রধানমন্ত্রী'**
 ```python
-import gensim
-model = gensim.models.Word2Vec.load('bn_w2v_model.bin')
-words=model.most_similar(positive=['প্রধানমন্ত্রী'], negative=[], topn=10)
+from gensim.models import KeyedVectors
+
+model = KeyedVectors.load_word2vec_format('bn_w2v_model.text', binary=False)
+words = model.most_similar(positive=['প্রধানমন্ত্রী'], negative=[], topn=10)
 
 for w in words:
-  print w[0]
+  print(w[0])
 # The most similar top ten words that we are getting are reasonable, as shown below.
 মনমোহন
 প্রধানমন্ত্রীর
