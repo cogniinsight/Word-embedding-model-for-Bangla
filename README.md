@@ -65,7 +65,7 @@ The trained model using [word2vec](https://code.google.com/archive/p/word2vec/) 
 
 The vocab size of the model is **436126** with 300-dimensional vectors.
 
-Please cite the following paper if you are using this model:
+## Please cite the following paper if you are using this model:
 
 *Firoj Alam, Shammur Absar Chowdhury and Sheak Rashed Haider Noori, Bidirectional LSTMs - CRFs Networks for Bangla POS Tagging, ICCIT 2016.*
 
@@ -79,3 +79,7 @@ Please cite the following paper if you are using this model:
   organization={IEEE}
 }
 ```
+
+## Licensing
+The MEDIC dataset is published under CC BY-NC-SA 4.0 license, which means everyone can use this dataset for non-commercial research purpose: https://creativecommons.org/licenses/by-nc/4.0/.
+
